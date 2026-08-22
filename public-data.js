@@ -1,0 +1,1 @@
+(async function(){const image=document.querySelector('[data-managed-organization]');if(!image)return;try{const data=await kijApi.organization();if(data?.imageUrl){image.src=data.imageUrl;image.alt=data.alt||image.alt}}catch(_){}})();

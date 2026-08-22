@@ -1,1 +1,1 @@
-document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('button,input[type="file"],select').forEach(element=>element.disabled=true);const notice=document.createElement('div');notice.className='container my-5 card';notice.innerHTML='<div class="card-body"><h2>관리 기능 이전 안내</h2><p>보안을 위해 공개 홈페이지에서 직접 GitHub 자료를 수정하는 기능을 중단했습니다. 공지와 실적 자료는 저장소에서 안전하게 관리합니다.</p></div>';document.body.prepend(notice)});
+location.replace('./admin.html');
