@@ -1,15 +1,1 @@
-	window.onscroll = function() {
-      const scrollBtn = document.getElementById("scrollToTopBtn");
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        scrollBtn.style.display = "block";
-      } else {
-        scrollBtn.style.display = "none";
-      }
-    };
-
-    // 버튼 클릭 시 최상위로 이동
-    document.getElementById("scrollToTopBtn").onclick = function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-	
-	
+document.addEventListener('DOMContentLoaded',()=>{const h=document.querySelector('.navbar'),t=document.querySelector('.navbar-toggler'),m=document.querySelector('.navbar-collapse'),top=document.getElementById('scrollToTopBtn');const scroll=()=>{h?.classList.toggle('scrolled',scrollY>40);if(top)top.style.display=scrollY>320?'block':'none'};scroll();addEventListener('scroll',scroll,{passive:true});t?.addEventListener('click',()=>{const o=m?.classList.toggle('show');t.setAttribute('aria-expanded',String(!!o))});document.querySelectorAll('.dropdown-toggle').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();const d=b.closest('.dropdown');document.querySelectorAll('.dropdown.open').forEach(x=>x!==d&&x.classList.remove('open'));d?.classList.toggle('open')}));document.addEventListener('click',e=>{if(!e.target.closest('.dropdown'))document.querySelectorAll('.dropdown.open').forEach(x=>x.classList.remove('open'))});const page=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('.nav-link').forEach(a=>{if((a.getAttribute('href')||'').includes(page))a.classList.add('active')});top?.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));const c=document.querySelector('.carousel');if(c){const s=[...c.querySelectorAll('.carousel-item')];let i=Math.max(0,s.findIndex(x=>x.classList.contains('active'))),timer;const show=n=>{i=(n+s.length)%s.length;s.forEach((x,j)=>x.classList.toggle('active',j===i))},play=()=>{clearInterval(timer);timer=setInterval(()=>show(i+1),6500)};c.querySelector('.carousel-control-prev')?.addEventListener('click',()=>{show(i-1);play()});c.querySelector('.carousel-control-next')?.addEventListener('click',()=>{show(i+1);play()});play()}const modal=document.getElementById('imageModal'),close=()=>modal?.classList.remove('show');modal?.querySelector('.btn-close')?.addEventListener('click',close);modal?.addEventListener('click',e=>e.target===modal&&close());document.addEventListener('keydown',e=>e.key==='Escape'&&close())});window.openImageModal=src=>{const m=document.getElementById('imageModal'),i=document.getElementById('modalImage');if(m&&i){i.src=src;m.classList.add('show')}};
