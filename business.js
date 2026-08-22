@@ -1,19 +1,2 @@
-	function showContent(sectionId) {
-		var contentSections = document.getElementsByClassName("content-section");
-		for (var i = 0; i < contentSections.length; i++) {
-			contentSections[i].style.display = "none";
-		}
-		document.getElementById(sectionId).style.display = "block";
-	}
-
-	function showSectionFromURL() {
-		const urlParams = new URLSearchParams(window.location.search);
-		const section = urlParams.get('section');
-		if (section) {
-			showContent(section);
-		} else {
-			showContent("supervising");
-		}
-	}
-
-	document.addEventListener("DOMContentLoaded", showSectionFromURL);
+function showContent(id){document.querySelectorAll('.content-section').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('.left-menu a').forEach(a=>a.classList.toggle('active',(a.getAttribute('onclick')||'').includes(`'${id}'`)));history.replaceState(null,'',`?section=${encodeURIComponent(id)}`)}
+document.addEventListener('DOMContentLoaded',()=>{const id=new URLSearchParams(location.search).get('section')||'supervising';showContent(document.getElementById(id)?id:'supervising')});
